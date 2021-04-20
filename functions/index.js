@@ -2,13 +2,13 @@ const { exec } = require('child_process');
 
 let cmd = {
     status: function(msg) {
-        msg.channel.send('status check!')
-        exec('echo "hi what is up my dude"', (err, stdout, stderr) => {
+        exec('service minecraft status', (err, stdout, stderr) => {
             console.log(stdout);
             if (err !== null) {
                 console.log('exec error: ' + err)
             }
         });
+        msg.channel.send(stdout)
     }
 }
 
