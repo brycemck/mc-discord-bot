@@ -5,32 +5,6 @@ const TOKEN = process.env.TOKEN;
 
 const { cmd, commands } = require('./functions')
 
-// function notAnAdmin(msg) {
-//   msg.channel.send("you are not an admin!")
-// }
-// function notACommand(msg) {
-//   msg.channel.send("That's not a command homie")
-// }
-// function status(msg) {
-//   exec("service minecraft status", (error, stdout, stderr) => {
-//     if (error) {
-//       console.log(`error: ${error.message}`)
-//     }
-//     if (stderr) {
-//       console.log(`stderr: ${stderr}`)
-//     }
-//     console.log(`stdout: ${stdout}`)
-//   })
-//   msg.channel.send(stdout)
-// }
-
-// let commands = new Map();
-// commands.set("status", status);
-
-let admins = [ // ids of users
-  "635323524713807914"
-]
-
 bot.login(TOKEN);
 
 bot.on('ready', () => {
