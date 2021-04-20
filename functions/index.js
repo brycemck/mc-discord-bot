@@ -84,12 +84,12 @@ let cmd = {
     },
     restartBot: function(msg) {
         if (isAdmin(msg.author.id)) {
-            exec('sudo /usr/sbin/service mc-discord-bot restart', (err, stdout, stderr) => {
+            exec('sh scripts/restart_bot.sh', (err, stdout, stderr) => {
                 if (err !== null) {
                     console.log('exec error: ' + err)
                     msg.channel.send("An error occurred.");
                 } else {
-                    msg.channel.send(stdout);
+                    msg.channel.send("Restarting bot...");
                 }
             });
         }
