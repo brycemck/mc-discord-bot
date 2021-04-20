@@ -46,6 +46,13 @@ let cmd = {
     notAnAdmin: function(msg) {
         msg.channel.send("You are not an admin!");
     },
+    admin: function(msg) {
+        if (isAdmin(msg.author.id)) {
+            msg.channel.send("You are an admin!")
+        } else {
+            msg.channel.send("You are not an admin.")
+        }
+    },
     notACommand: function(msg) {
         msg.channel.send("That is not a command. Please use !help for a list of available commands.")
     },
@@ -62,6 +69,36 @@ let cmd = {
         } else {
             this.notAnAdmin();
         }
+    },
+    restartMC: function(msg) {
+        if (isAdmin(msg.author.id)) {
+            exec('service minecraft restart', (err, stdout, stderr) => {
+                if (err !== null) {
+                    console.log('exec error: ' + err)
+                    msg.channel.send("An error occurred.");
+                } else {
+                    msg.channel.send(stdout);
+                }
+            });
+        }
+    },
+    restartBot: function(msg) {
+        if (isAdmin(msg.author.id)) {
+            exec('service mc-discord-bot restart', (err, stdout, stderr) => {
+                if (err !== null) {
+                    console.log('exec error: ' + err)
+                    msg.channel.send("An error occurred.");
+                } else {
+                    msg.channel.send(stdout);
+                }
+            });
+        }
+    },
+    help: function(msg) {
+        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n !help");
+        if(isAdmin(msg.author.id)) {
+            msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc\n!restart-bot")
+        }
     }
 }
 
@@ -69,6 +106,10 @@ let commands = new Map();
 commands.set("status", cmd.status);
 commands.set("restart", cmd.restart);
 commands.set("uptime", cmd.uptime);
+commands.set("restart-mc", cmd.restartMC);
+commands.set("restart-bot", cmd.restartBot);
+commands.set("admin", cmd.admin)
+commands.set("help", cmd.help);
 
 module.exports.commands = commands;
 module.exports.cmd = cmd;
