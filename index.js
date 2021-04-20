@@ -14,7 +14,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  console.info(msg.content)
+  console.info(msg.author.id + msg.author.username + msg.content)
   // console.log(msg)
  if (msg.content[0] === '!') { // if message starts with "!"
   const command = msg.content.split(" ")[0].substr(1);
