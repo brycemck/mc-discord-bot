@@ -1,7 +1,8 @@
 const { exec } = require('child_process');
 
 let admins = [ // ids of users
-  "635323524713807914"
+  "635323524713807914",
+  "817088476968517674"
 ]
 
 function isAdmin(id) {
