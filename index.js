@@ -3,29 +3,29 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
-const { exec } = require("child_process");
+const { cmd, commands } = require('./functions')
 
-function notAnAdmin(msg) {
-  msg.channel.send("you are not an admin!")
-}
-function notACommand(msg) {
-  msg.channel.send("That's not a command homie")
-}
-function status(msg) {
-  exec("service minecraft status", (error, stdout, stderr) => {
-    if (error) {
-      console.log(`error: ${error.message}`)
-    }
-    if (stderr) {
-      console.log(`stderr: ${stderr}`)
-    }
-    console.log(`stdout: ${stdout}`)
-  })
-  // msg.channel.send("status check")
-}
+// function notAnAdmin(msg) {
+//   msg.channel.send("you are not an admin!")
+// }
+// function notACommand(msg) {
+//   msg.channel.send("That's not a command homie")
+// }
+// function status(msg) {
+//   exec("service minecraft status", (error, stdout, stderr) => {
+//     if (error) {
+//       console.log(`error: ${error.message}`)
+//     }
+//     if (stderr) {
+//       console.log(`stderr: ${stderr}`)
+//     }
+//     console.log(`stdout: ${stdout}`)
+//   })
+//   msg.channel.send(stdout)
+// }
 
-let commands = new Map();
-commands.set("status", status);
+// let commands = new Map();
+// commands.set("status", status);
 
 let admins = [ // ids of users
   "635323524713807914"
@@ -40,8 +40,8 @@ bot.on('ready', () => {
 bot.on('message', msg => {
   console.info(msg.content)
   // console.log(msg)
- if (msg.content[0] === '!') {
-  if (admins.includes(msg.author.id)) {
+ if (msg.content[0] === '!') { // if message starts with "!"
+  if (admins.includes(msg.author.id)) { // if user id should be an admin
     console.log("passed admin check")
     const command = msg.content.split(" ")[0].substr(1);
     if (commands.has(command)) {
