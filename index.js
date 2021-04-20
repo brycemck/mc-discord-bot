@@ -3,6 +3,8 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
+const { exec } = require("child_process");
+
 function notAnAdmin(msg) {
   msg.channel.send("you are not an admin!")
 }
@@ -10,6 +12,15 @@ function notACommand(msg) {
   msg.channel.send("That's not a command homie")
 }
 function status(msg) {
+  exec("service minecraft status", (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`)
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`)
+    }
+    console.log(`stdout: ${stdout}`)
+  })
   msg.channel.send("status check")
 }
 
