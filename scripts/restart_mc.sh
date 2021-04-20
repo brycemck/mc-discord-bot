@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "restarting bot"
+echo "restarting minecraft"
 sleep 3
 sudo /bin/systemctl restart minecraft

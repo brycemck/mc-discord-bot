@@ -85,24 +85,10 @@ let cmd = {
             msg.channel.send("You are not an admin, therefore you are not the pogchamp.")
         }
     },
-    restartBot: function(msg) {
-        if (isAdmin(msg.author.id)) {
-            exec('sh scripts/restart_bot.sh', (err, stdout, stderr) => {
-                if (err !== null) {
-                    console.log('exec error: ' + err)
-                    msg.channel.send("An error occurred.");
-                } else {
-                    msg.channel.send("Restarting bot...");
-                }
-            });
-        } else {
-            msg.channel.send("You are not an admin, therefore you are not the pogchamp.")
-        }
-    },
     help: function(msg) {
-        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n !help");
+        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n!help");
         if(isAdmin(msg.author.id)) {
-            msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc\n!restart-bot")
+            msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc")
         }
     }
 }
@@ -112,7 +98,6 @@ commands.set("status", cmd.status);
 commands.set("restart", cmd.restart);
 commands.set("uptime", cmd.uptime);
 commands.set("restart-mc", cmd.restartMC);
-commands.set("restart-bot", cmd.restartBot);
 commands.set("admin", cmd.admin)
 commands.set("help", cmd.help);
 
