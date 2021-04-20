@@ -7,7 +7,6 @@ const { cmd, commands } = require('./functions')
 
 console.log("hello")
 
-bot.on("debug", console.log)
 bot.login(TOKEN);
 
 bot.on('ready', () => {
