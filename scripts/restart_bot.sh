@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "restarting bot"
+echo "restarting MC"
 sleep 3
-sudo /bin/systemctl restart mc-discord-bot
+sudo /bin/systemctl restart minecraft

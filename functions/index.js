@@ -73,14 +73,16 @@ let cmd = {
     },
     restartMC: function(msg) {
         if (isAdmin(msg.author.id)) {
-            exec('sudo /usr/sbin/service minecraft restart', (err, stdout, stderr) => {
+            exec('sh scripts/restart_mc.sh', (err, stdout, stderr) => {
                 if (err !== null) {
                     console.log('exec error: ' + err)
                     msg.channel.send("An error occurred.");
                 } else {
-                    msg.channel.send(stdout);
+                    msg.channel.send("Restarting bot...");
                 }
             });
+        } else {
+            msg.channel.send("You are not an admin, therefore you are not the pogchamp.")
         }
     },
     restartBot: function(msg) {
@@ -93,6 +95,8 @@ let cmd = {
                     msg.channel.send("Restarting bot...");
                 }
             });
+        } else {
+            msg.channel.send("You are not an admin, therefore you are not the pogchamp.")
         }
     },
     help: function(msg) {
