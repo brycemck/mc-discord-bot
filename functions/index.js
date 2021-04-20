@@ -72,7 +72,7 @@ let cmd = {
     },
     restartMC: function(msg) {
         if (isAdmin(msg.author.id)) {
-            exec('service minecraft restart', (err, stdout, stderr) => {
+            exec('sudo service minecraft restart', (err, stdout, stderr) => {
                 if (err !== null) {
                     console.log('exec error: ' + err)
                     msg.channel.send("An error occurred.");
@@ -84,7 +84,7 @@ let cmd = {
     },
     restartBot: function(msg) {
         if (isAdmin(msg.author.id)) {
-            exec('service mc-discord-bot restart', (err, stdout, stderr) => {
+            exec('sudo service mc-discord-bot restart', (err, stdout, stderr) => {
                 if (err !== null) {
                     console.log('exec error: ' + err)
                     msg.channel.send("An error occurred.");
