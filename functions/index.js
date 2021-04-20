@@ -31,7 +31,6 @@ let cmd = {
     },
     restart: function(msg) {
         if (isAdmin(msg.author.id)) {
-            // msg.channel.send("Restarting server (this will also restart this bot). Please wait up to three minutes to try again.")
             exec('sh scripts/restart_server.sh', (err, stdout, stderr) => {
                 if (err !== null) {
                     console.log('exec error: ' + err)
