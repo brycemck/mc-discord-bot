@@ -23,6 +23,26 @@ let cmd = {
             }
         });
     },
+    botStatus: function(msg) {
+        exec('service mc-discord-bot status', (err, stdout, stderr) => {
+            if (err !== null) {
+                console.log('exec error: ' + err)
+                msg.channel.send("An error occurred.");
+            } else {
+                msg.channel.send(stdout);
+            }
+        });
+    },
+    uptime: function(msg) {
+        exec('uptime', (err, stdout, stderr) => {
+            if (err !== null) {
+                console.log('exec error: ' + err)
+                msg.channel.send("An error occurred.");
+            } else {
+                msg.channel.send("Server uptime is " + stdout);
+            }
+        });
+    },
     notAnAdmin: function(msg) {
         msg.channel.send("You are not an admin!");
     },
@@ -39,6 +59,8 @@ let cmd = {
                     msg.channel.send("Restarting server (this will also restart this bot). Please wait up to three minutes to try again.");
                 }
             });
+        } else {
+            this.notAnAdmin();
         }
     }
 }
@@ -46,5 +68,7 @@ let cmd = {
 let commands = new Map();
 commands.set("status", cmd.status);
 commands.set("restart", cmd.restart);
+commands.set("uptime", cmd.uptime);
 
 module.exports.commands = commands;
+module.exports.cmd = cmd;

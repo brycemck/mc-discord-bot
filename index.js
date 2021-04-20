@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
-const { commands } = require('./functions')
+const { cmd, commands } = require('./functions')
 
 bot.login(TOKEN);
 
@@ -20,7 +20,7 @@ bot.on('message', msg => {
     console.log(command + " is a command.")
     commands.get(command)(msg)
   } else {
-    notACommand(msg);
+    cmd.notACommand();
   }
  }
   // if (msg.content === 'ping') {
