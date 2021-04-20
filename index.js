@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
-const { cmd, commands } = require('./functions')
+const { commands } = require('./functions')
 
 bot.login(TOKEN);
 
@@ -15,17 +15,12 @@ bot.on('message', msg => {
   console.info(msg.content)
   // console.log(msg)
  if (msg.content[0] === '!') { // if message starts with "!"
-  if (admins.includes(msg.author.id)) { // if user id should be an admin
-    console.log("passed admin check")
-    const command = msg.content.split(" ")[0].substr(1);
-    if (commands.has(command)) {
-      console.log(command + " is a command.")
-      commands.get(command)(msg)
-    } else {
-      notACommand(msg);
-    }
+  const command = msg.content.split(" ")[0].substr(1);
+  if (commands.has(command)) {
+    console.log(command + " is a command.")
+    commands.get(command)(msg)
   } else {
-    notAnAdmin(msg);
+    notACommand(msg);
   }
  }
   // if (msg.content === 'ping') {

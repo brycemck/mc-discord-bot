@@ -45,6 +45,6 @@ let cmd = {
 
 let commands = new Map();
 commands.set("status", cmd.status);
+commands.set("restart", cmd.restart);
 
-module.exports.cmd = cmd;
 module.exports.commands = commands;
