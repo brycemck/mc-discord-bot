@@ -21,7 +21,7 @@ function status(msg) {
     }
     console.log(`stdout: ${stdout}`)
   })
-  msg.channel.send("status check")
+  // msg.channel.send("status check")
 }
 
 let commands = new Map();
