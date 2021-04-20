@@ -78,7 +78,7 @@ let cmd = {
                     console.log('exec error: ' + err)
                     msg.channel.send("An error occurred.");
                 } else {
-                    msg.channel.send("Restarting bot...");
+                    msg.channel.send("Restarting minecraft service...");
                 }
             });
         } else {
