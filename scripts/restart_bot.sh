@@ -2,4 +2,4 @@
 
 echo "restarting bot"
 sleep 3
-sudo /usr/sbin/service mc-discord-bot restart
+sudo /bin/systemctl restart mc-discord-bot
