@@ -31,7 +31,7 @@ let cmd = {
     },
     restart: function(msg) {
         if (isAdmin(msg.author.id)) {
-            exec('sh ../scripts/restart_server.sh', (err, stdout, stderr) => {
+            exec('sh scripts/restart_server.sh', (err, stdout, stderr) => {
                 if (err !== null) {
                     console.log('exec error: ' + err)
                     msg.channel.send("An error occurred.");
