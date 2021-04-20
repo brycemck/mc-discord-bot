@@ -1,3 +1,3 @@
 #!/bin/bash
 
-shutdown -r now
+sudo -u minecraft shutdown -r now
