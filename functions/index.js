@@ -101,7 +101,8 @@ let cmd = {
             "POGGERS"
         ]
         var random = Math.floor(Math.random() * (options.length));
-        console.log(random)
+        
+        msg.channel.send(options[random]);
     }
 }
 
