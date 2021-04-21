@@ -100,8 +100,8 @@ let cmd = {
             "I don't know",
             "POGGERS"
         ]
-        console.log(options.length)
-        var random = Math.floor(Math.random() * (options.length + 1));
+        var random = Math.floor(Math.random() * (options.length));
+        console.log(random)
     }
 }
 
