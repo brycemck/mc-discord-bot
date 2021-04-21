@@ -90,6 +90,9 @@ let cmd = {
         if(isAdmin(msg.author.id)) {
             msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc")
         }
+    },
+    foams: function(msg) {
+        msg.channel.send("yes");
     }
 }
 
@@ -100,6 +103,7 @@ commands.set("uptime", cmd.uptime);
 commands.set("restart-mc", cmd.restartMC);
 commands.set("admin", cmd.admin)
 commands.set("help", cmd.help);
+commands.set("should", cmd.foams);
 
 module.exports.commands = commands;
 module.exports.cmd = cmd;
