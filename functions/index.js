@@ -91,8 +91,17 @@ let cmd = {
             msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc")
         }
     },
-    foams: function(msg) {
-        msg.channel.send("yes");
+    eightball: function(msg) {
+        let options = [
+            "Yes",
+            "No",
+            "Maybe",
+            "Try again",
+            "I don't know",
+            "POGGERS"
+        ]
+        console.log(options.length)
+        var random = Math.floor(Math.random() * (options.length + 1));
     }
 }
 
@@ -103,7 +112,7 @@ commands.set("uptime", cmd.uptime);
 commands.set("restart-mc", cmd.restartMC);
 commands.set("admin", cmd.admin)
 commands.set("help", cmd.help);
-commands.set("should", cmd.foams);
+commands.set("8ball", cmd.eightball);
 
 module.exports.commands = commands;
 module.exports.cmd = cmd;
