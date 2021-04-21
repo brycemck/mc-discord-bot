@@ -99,7 +99,8 @@ let cmd = {
             "Try again",
             "I don't know",
             "POGGERS",
-            "Stfu!"
+            "Stfu!",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         ]
         var random = Math.floor(Math.random() * (options.length));
         
