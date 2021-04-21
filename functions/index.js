@@ -98,7 +98,8 @@ let cmd = {
             "Maybe",
             "Try again",
             "I don't know",
-            "POGGERS"
+            "POGGERS",
+            "Stfu!"
         ]
         var random = Math.floor(Math.random() * (options.length));
         
