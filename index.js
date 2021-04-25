@@ -22,7 +22,7 @@ bot.on('message', msg => {
     console.log(command + " is a command.")
     commands.get(command)(msg)
   } else {
-    cmd.notACommand();
+    cmd.notACommand(msg);
   }
  }
   // if (msg.content === 'ping') {
