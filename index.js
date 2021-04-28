@@ -18,6 +18,9 @@ bot.on('message', msg => {
   // console.log(msg)
  if (msg.content[0] === '!') { // if message starts with "!"
   const command = msg.content.split(" ")[0].substr(1);
+  if (msg.mentions.has(bot.user.id)) {
+    cmd.tobiasQuote(msg);
+  }
   if (commands.has(command)) {
     console.log(command + " is a command.")
     commands.get(command)(msg)

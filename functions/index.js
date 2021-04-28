@@ -54,6 +54,20 @@ let cmd = {
             msg.channel.send("You are not an admin.")
         }
     },
+    hello: function(msg) {
+        let options = [
+            "Hello!",
+            "What's good?",
+            "How u livin'?",
+            "how u doin ( ͡° ͜ʖ ͡°)",
+            "How's your day going?",
+            "Good morrow laddy",
+            "ayyyyyy"
+        ]
+        var random = Math.floor(Math.random() * (options.length));
+        
+        msg.channel.send(options[random]);
+    },
     notACommand: function(msg) {
         msg.channel.send("That is not a command. Please use !help for a list of available commands.")
     },
@@ -105,6 +119,14 @@ let cmd = {
         var random = Math.floor(Math.random() * (options.length));
         
         msg.channel.send(options[random]);
+    },
+    tobiasQuote: function(msg) {
+        let options = [
+            "nothin yet hold up"
+        ]
+        var random = Math.floor(Math.random() * (options.length));
+        
+        msg.channel.send(options[random]);
     }
 }
 
@@ -116,6 +138,7 @@ commands.set("restart-mc", cmd.restartMC);
 commands.set("admin", cmd.admin)
 commands.set("help", cmd.help);
 commands.set("8ball", cmd.eightball);
+commands.set("hello", cmd.hello);
 
 module.exports.commands = commands;
 module.exports.cmd = cmd;
