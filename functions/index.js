@@ -100,7 +100,7 @@ let cmd = {
         }
     },
     help: function(msg) {
-        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n!help");
+        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n!8ball\n!help");
         if(isAdmin(msg.author.id)) {
             msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc")
         }
