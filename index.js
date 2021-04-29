@@ -15,7 +15,7 @@ bot.on('ready', () => {
 
 bot.on('message', msg => {
   console.info(msg.author.id + msg.author.username + msg.content)
-  console.log(msg.mentions)
+  // console.log(msg.mentions)
   // if (msg.mentions) {
   //   cmd.tobiasQuote(msg);
   // }
