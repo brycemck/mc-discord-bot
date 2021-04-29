@@ -16,9 +16,9 @@ bot.on('ready', () => {
 bot.on('message', msg => {
   console.info(msg.author.id + msg.author.username + msg.content)
   // console.log(msg.mentions)
-  // if (msg.mentions) {
-  //   cmd.tobiasQuote(msg);
-  // }
+  if (msg.isMentioned(bot.user)) {
+    cmd.tobiasQuote(msg);
+  }
   if (msg.content[0] === '!') { // if message starts with "!"
     const command = msg.content.split(" ")[0].substr(1);
     if (commands.has(command)) {

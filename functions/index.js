@@ -120,14 +120,14 @@ let cmd = {
         
         msg.channel.send(options[random]);
     },
-    // tobiasQuote: function(msg) {
-    //     let options = [
-    //         "nothin yet hold up"
-    //     ]
-    //     var random = Math.floor(Math.random() * (options.length));
+    tobiasQuote: function(msg) {
+        let options = [
+            "nothin yet hold up"
+        ]
+        var random = Math.floor(Math.random() * (options.length));
         
-    //     msg.channel.send(options[random]);
-    // }
+        msg.channel.send(options[random]);
+    }
 }
 
 let commands = new Map();
