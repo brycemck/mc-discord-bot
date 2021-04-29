@@ -129,7 +129,7 @@ let cmd = {
             "Oh boy, i got some looks on the bus cause of this!",
             "Excuse me, do these effectively hide my thunder?",
             "I'm afraid it's merely a cloaking agent from a sadly blunderous afternoon.",
-            "When a man needs to prove to a woman that he's actually… ",
+            "When a man needs to prove to a woman that he's actually...",
             "With fully formed libidos, not two young men playing grab-ass in the shower.",
             "Even if I have to take a chubby, I'm willing to suck it up!",
             "I had no idea a ninety year-old man could cave in my chest cavity like that.",
