@@ -2,7 +2,8 @@ const { exec } = require('child_process');
 
 let admins = [ // ids of users
   "635323524713807914",
-  "817088476968517674"
+  "817088476968517674",
+  "464867699349258240"
 ]
 
 function isAdmin(id) {
@@ -16,16 +17,6 @@ function isAdmin(id) {
 let cmd = {
     status: function(msg) {
         exec('service minecraft status', (err, stdout, stderr) => {
-            if (err !== null) {
-                console.log('exec error: ' + err)
-                msg.channel.send("An error occurred.");
-            } else {
-                msg.channel.send(stdout);
-            }
-        });
-    },
-    botStatus: function(msg) {
-        exec('service mc-discord-bot status', (err, stdout, stderr) => {
             if (err !== null) {
                 console.log('exec error: ' + err)
                 msg.channel.send("An error occurred.");
@@ -64,43 +55,14 @@ let cmd = {
             "Good morrow laddy",
             "ayyyyyy"
         ]
-        var random = Math.floor(Math.random() * (options.length));
         
-        msg.channel.send(options[random]);
+        msg.channel.send(options[Math.floor(Math.random() * (options.length))]);
     },
     notACommand: function(msg) {
         msg.channel.send("That is not a command. Please use !help for a list of available commands.")
     },
-    restart: function(msg) {
-        if (isAdmin(msg.author.id)) {
-            exec('sh scripts/restart_server.sh', (err, stdout, stderr) => {
-                if (err !== null) {
-                    console.log('exec error: ' + err)
-                    msg.channel.send("An error occurred.");
-                } else {
-                    msg.channel.send("Restarting server (this will also restart this bot). Please wait up to three minutes to try again.");
-                }
-            });
-        } else {
-            this.notAnAdmin();
-        }
-    },
-    restartMC: function(msg) {
-        if (isAdmin(msg.author.id)) {
-            exec('sh scripts/restart_mc.sh', (err, stdout, stderr) => {
-                if (err !== null) {
-                    console.log('exec error: ' + err)
-                    msg.channel.send("An error occurred.");
-                } else {
-                    msg.channel.send("Restarting minecraft service...");
-                }
-            });
-        } else {
-            msg.channel.send("You are not an admin, therefore you are not the pogchamp.")
-        }
-    },
     help: function(msg) {
-        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n!8ball\n!help");
+        msg.channel.send("The following commands are available:\n!status\n!uptime\n!admin\n!8ball\n!memegen\n!help");
         if(isAdmin(msg.author.id)) {
             msg.channel.send("Since you're an admin, you can also use:\n!restart\n!restart-mc")
         }
@@ -114,11 +76,9 @@ let cmd = {
             "I don't know",
             "POGGERS",
             "Stfu!",
-            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         ]
-        var random = Math.floor(Math.random() * (options.length));
         
-        msg.channel.send(options[random]);
+        msg.channel.send(options[Math.floor(Math.random() * (options.length))]);
     },
     tobiasQuote: function(msg) {
         let options = [
@@ -144,21 +104,32 @@ let cmd = {
             "Ooh, I can taste those meaty, leading man parts in my mouth!",
             "Come on. Let's see some bananas and nuts. Oh, perhaps we should just pull their pants off."
         ]
-        var random = Math.floor(Math.random() * (options.length));
         
-        msg.channel.send(options[random]);
+        msg.channel.send(options[Math.floor(Math.random() * (options.length))]);
+    },
+    memegen: function(msg) {
+        let arguments = msg.content.replace(/!memegen /g,'').replace(/[\u201C\u201D]/g, '"').split('" "');
+
+        for (const i in arguments) {
+            arguments[i] = arguments[i].replace(/ /g, '_').replace(/"/g, '').replace(/\?/g, '~q').replace(/&/g, '~a').replace(/%/g, '~p').replace(/\//g, '~s').replace(/#/g, '~h');
+        }
+
+        const baseUrl = "https://api.memegen.link"
+        const requestOptions = "/images" + "/" + arguments[0] + "/" + arguments[1] + "/" + arguments[2];
+        const requestUrl = baseUrl + requestOptions;
+
+        msg.channel.send(requestUrl);
     }
 }
 
 let commands = new Map();
 commands.set("status", cmd.status);
-commands.set("restart", cmd.restart);
 commands.set("uptime", cmd.uptime);
-commands.set("restart-mc", cmd.restartMC);
 commands.set("admin", cmd.admin)
 commands.set("help", cmd.help);
 commands.set("8ball", cmd.eightball);
 commands.set("hello", cmd.hello);
+commands.set("memegen", cmd.memegen);
 
 module.exports.commands = commands;
 module.exports.cmd = cmd;
