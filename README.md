@@ -5,7 +5,7 @@ I just found out that my cellular telephone was a lemon. It didn't work.
 * Clone the repo
 * Run `npm install` to install all dependencies
 * Create a .env file at the root of the directory
-* Add the Discord Bot token variable, like this:
+* Add the Discord Bot token variable to .env, like this:
   `TOKEN=token-goes-here`
 * Run `node index.js` to start the server
 
