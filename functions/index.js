@@ -108,34 +108,54 @@ let cmd = {
         msg.channel.send(options[Math.floor(Math.random() * (options.length))]);
     },
     memegen: function(msg) {
+        const memehelp = `
+Memegen accepts parameters as individual strings, wrapped in double quotes and separated by a space.
+        
+The first parameter is always a description of the meme background you want to use. Spaces must be dashes in this string.
+        
+Each additional string argument is used as a new text field for the meme.
+        
+FLAGS:
+  \"|gif\" - requests a gif version of your meme.
+  \"\\link-to-image.jpg\" - if your meme background supports it, this will overlay the image you provide to the designated spot.
+  
+EXAMPLES:
+  !memegen "pigeon" "me" " " "is this breakfast?" "\\https://www.clipartmax.com/png/middle/287-2876558_frappuccino-blog-starbucks.png"
+  !memegen "fine" "_" "this is fine" "|gif"
+  !memegen "gb" "who" "whom" "whom'st" "whomst'd"
+`
         let arguments = msg.content.replace(/!memegen /g,'').replace(/[\u201C\u201D]/g, '"').split('" "');
 
-        const baseUrl = "https://api.memegen.link/images";
-        var requestOptions = "";
-        var style = "";
-        var fileformat = "jpg";
+        if (arguments.length < 3) {
+            msg.channel.send(memehelp);
+        } else {
+            const baseUrl = "https://api.memegen.link/images";
+            var requestOptions = "";
+            var style = "";
+            var fileformat = "jpg";
 
-        for (const i in arguments) {
-            if (arguments[i].includes("|")) {
-                fileformat = arguments[i].replace(/\|/g, '').replace(/"/g, '');
-                console.log(fileformat);
-                arguments.splice(i, 1);
-            } else if (arguments[i].includes("\\")) {
-                style = arguments[i].replace(/\\/g, '').replace(/"/g, '');
-                arguments.splice(i, 1);
-            } else {
-                arguments[i] = arguments[i].replace(/ /g, '_').replace(/"/g, '').replace(/\?/g, '~q').replace(/&/g, '~a').replace(/%/g, '~p').replace(/\//g, '~s').replace(/#/g, '~h');
-                requestOptions += "/" + arguments[i];
+            for (const i in arguments) {
+                if (arguments[i].includes("|")) {
+                    fileformat = arguments[i].replace(/\|/g, '').replace(/"/g, '');
+                    console.log(fileformat);
+                    arguments.splice(i, 1);
+                } else if (arguments[i].includes("\\")) {
+                    style = arguments[i].replace(/\\/g, '').replace(/"/g, '');
+                    arguments.splice(i, 1);
+                } else {
+                    arguments[i] = arguments[i].replace(/ /g, '_').replace(/"/g, '').replace(/\?/g, '~q').replace(/&/g, '~a').replace(/%/g, '~p').replace(/\//g, '~s').replace(/#/g, '~h');
+                    requestOptions += "/" + arguments[i];
+                }
             }
-        }
-        console.log(arguments);
-        var requestUrl = baseUrl + requestOptions + "." + fileformat;
+            console.log(arguments);
+            var requestUrl = baseUrl + requestOptions + "." + fileformat;
 
-        if (style != "") {
-            console.log(style)
-            requestUrl += "?style=" + style;
+            if (style != "") {
+                console.log(style)
+                requestUrl += "?style=" + style;
+            }
+            msg.channel.send(requestUrl);
         }
-        msg.channel.send(requestUrl);
     }
 }
 
