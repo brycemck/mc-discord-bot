@@ -123,6 +123,7 @@ EXAMPLES:
   !memegen "pigeon" "me" " " "is this breakfast?" "\\https://www.clipartmax.com/png/middle/287-2876558_frappuccino-blog-starbucks.png"
   !memegen "fine" " " "this is fine" "|gif"
   !memegen "gb" "who" "whom" "whom'st" "whomst'd"
+  https://memegen.link/examples/
 `
         let arguments = msg.content.replace(/!memegen /g,'').replace(/[\u201C\u201D]/g, '"').split('" "');
 
