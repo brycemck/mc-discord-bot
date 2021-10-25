@@ -110,15 +110,31 @@ let cmd = {
     memegen: function(msg) {
         let arguments = msg.content.replace(/!memegen /g,'').replace(/[\u201C\u201D]/g, '"').split('" "');
 
-        const baseUrl = "https://api.memegen.link/images/";
-        requestOptions = "";
+        const baseUrl = "https://api.memegen.link/images";
+        var requestOptions = "";
+        var style = "";
+        var fileformat = "jpg";
 
         for (const i in arguments) {
-            arguments[i] = arguments[i].replace(/ /g, '_').replace(/"/g, '').replace(/\?/g, '~q').replace(/&/g, '~a').replace(/%/g, '~p').replace(/\//g, '~s').replace(/#/g, '~h');
-            requestOptions += arguments[i] + "/";
+            if (arguments[i].includes("|")) {
+                fileformat = arguments[i].replace(/\|/g, '').replace(/"/g, '');
+                console.log(fileformat);
+                arguments.splice(i, 1);
+            } else if (arguments[i].includes("\\")) {
+                style = arguments[i].replace(/\\/g, '').replace(/"/g, '');
+                arguments.splice(i, 1);
+            } else {
+                arguments[i] = arguments[i].replace(/ /g, '_').replace(/"/g, '').replace(/\?/g, '~q').replace(/&/g, '~a').replace(/%/g, '~p').replace(/\//g, '~s').replace(/#/g, '~h');
+                requestOptions += "/" + arguments[i];
+            }
         }
-        const requestUrl = baseUrl + requestOptions;
+        console.log(arguments);
+        var requestUrl = baseUrl + requestOptions + "." + fileformat;
 
+        if (style != "") {
+            console.log(style)
+            requestUrl += "?style=" + style;
+        }
         msg.channel.send(requestUrl);
     }
 }
