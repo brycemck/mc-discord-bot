@@ -109,7 +109,7 @@ let cmd = {
     },
     memegen: function(msg) {
         const memehelp = `
-Memegen accepts parameters as individual strings, wrapped in double quotes and separated by a space.
+Memegen accepts at least TWO parameters as individual strings, wrapped in double quotes and separated by a space.
         
 The first parameter is always a description of the meme background you want to use. Spaces must be dashes in this string.
         
