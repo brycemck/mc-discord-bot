@@ -151,9 +151,16 @@ EXAMPLES:
             console.log(arguments);
             var requestUrl = baseUrl + requestOptions + "." + fileformat;
 
-            if (style != "") {
-                console.log(style)
-                requestUrl += "?style=" + style;
+            if (fileformat == 'gif') {
+                requestUrl += "?width=400"
+
+                if (style != "") {
+                    requestUrl += "&style=" + style;
+                }
+            } else {
+                if (style != "") {
+                    requestUrl += "?style=" + style;
+                }
             }
             msg.channel.send(requestUrl);
         }
