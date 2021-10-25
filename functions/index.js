@@ -126,7 +126,7 @@ EXAMPLES:
 `
         let arguments = msg.content.replace(/!memegen /g,'').replace(/[\u201C\u201D]/g, '"').split('" "');
 
-        if (arguments.length < 1) {
+        if (arguments.length < 2) {
             msg.channel.send(memehelp);
         } else {
             const baseUrl = "https://api.memegen.link/images";
