@@ -110,12 +110,13 @@ let cmd = {
     memegen: function(msg) {
         let arguments = msg.content.replace(/!memegen /g,'').replace(/[\u201C\u201D]/g, '"').split('" "');
 
+        const baseUrl = "https://api.memegen.link/images/";
+        requestOptions = "";
+
         for (const i in arguments) {
             arguments[i] = arguments[i].replace(/ /g, '_').replace(/"/g, '').replace(/\?/g, '~q').replace(/&/g, '~a').replace(/%/g, '~p').replace(/\//g, '~s').replace(/#/g, '~h');
+            requestOptions += arguments[i] + "/";
         }
-
-        const baseUrl = "https://api.memegen.link"
-        const requestOptions = "/images" + "/" + arguments[0] + "/" + arguments[1] + "/" + arguments[2];
         const requestUrl = baseUrl + requestOptions;
 
         msg.channel.send(requestUrl);
