@@ -5,8 +5,6 @@ const TOKEN = process.env.TOKEN;
 
 const { cmd, commands } = require('./functions')
 
-console.log("hello")
-
 bot.login(TOKEN);
 
 bot.on('ready', () => {
